@@ -1,97 +1,91 @@
-//Hashing with Linear Probing
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
 #define size 10
-
 int arr[size];
-int i, choice;
+int i;
 int value;
-
 void insert(int value)
 {
-    int key = value % size;
-
-    if (arr[key] == -1)
+    int key=value%size;
+    if(arr[key]==-1)
     {
         arr[key]=value;
-        printf("%d inserted at arr[%d]\n", value, key);
+        printf("\n%d is inserted at [%d]",value,key);
     }
     else
     {
-        printf("Collision Occurs\n");
-        int i = 1;
-        int originalKey = key;
-        while (arr[key] != -1)
+        printf("\nCollision Occurs");
+        int i=1;
+        int originalkey=key;
+        while(arr[key]!=-1)
         {
-            key = (originalKey + i) % size;
+            key=(originalkey+i)%size;
             i++;
         }
-
-        arr[key] = value;
-        printf("%d inserted at arr[%d]\n", value, key);
+        arr[key]=value;
+        printf("\n%d is inserted at [%d]",value,key);
     }
 }
-
 void delete(int value)
 {
-    int key = value % size;
-
-    if (arr[key] == value)
+    int key=value%size;
+    if(arr[key]==value)
     {
-        arr[key] = -1;
-        printf("%d deleted from arr[%d]\n", value, key);
+        arr[key]=-1;
+        printf("\n%d is deleted from [%d]",value,key);
     }
     else
     {
-        int i = 1;
-        int originalKey = key;
-        while (arr[key] != -1 && arr[key] != value)
+        int i=1;
+        int originalkey=key;
+        while(arr[key]!=-1 && arr[key]!=value)
         {
-            key = (originalKey + i) % size;
+            key=(originalkey+i)%size;
             i++;
         }
-
-        if (arr[key] == value)
+        if(arr[key]==value)
         {
-            arr[key] = -1;
-            printf("%d deleted from arr[%d]\n", value, key);
+            arr[key]=-1;
+            printf("\n%d is deleted from arr[%d]",value,key);
         }
         else
         {
-            printf("%d not present in the hash table\n", value);
+            printf("\n%d is not present in the hash table",value);
         }
     }
 }
-
-
 void search(int value)
 {
-    int key = value % size;
-    int i = 1;
-    int originalKey = key;
-    while (arr[key] != -1 && arr[key] != value)
+    int key=value%size;
+    int i=1;
+    int originalkey=key;
+    while(arr[key]!=-1 && arr[key]!=value)
     {
-        key = (originalKey + i) % size;
+        key=(originalkey+i)%size;
         i++;
     }
-
-    if (arr[key] == value)
-        printf("Search Found\n");
+    if(arr[key]==value)
+    {
+        printf("\n%d is present at [%d]",value,key);
+    }
     else
-        printf("Search Not Found\n");
+    {
+        printf("\n%d is not found",value);
+    }
 }
-
 void display()
 {
-    for (i = 0; i < size; i++)
-        printf("arr[%d] = %d\n", i, arr[i]);
+    
+    for(int i=0;i<size;i++)
+    {
+        printf("\narr[%d]=%d",i,arr[i]);
+    }
 }
-
 int main()
 {
-    for (i = 0; i < size; i++)
+    for(int i=0;i<size;i++)
     {
-        arr[i] = -1;
+        arr[i]=-1;
     }
     insert(10);
     insert(39);
@@ -105,4 +99,3 @@ int main()
     display();
     return 0;
 }
-
